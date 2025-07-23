@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Money - Talk2Fill</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Add recording status and wave animation elements -->
+    <div id="recordingStatus" class="recording-status"></div>
+    <div id="recordingWave" class="recording-wave"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">Talk2Fill</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="deposit.html">Deposit</a>
+                <a href="withdraw.html">Withdraw</a>
+                <a href="account-opening.html">Open Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Main Content -->
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title" data-en="Withdraw Money" data-te="శాఖ పేరు" data-hi="शाखा का नाम">Withdraw Money</h1>
+                <div class="language-selector">
+                    <label for="languageSelect" class="form-label" data-en="Select Language:" data-te="భాషను ఎంచుకోండి:" data-hi="भाषा चुनें:">Select Language:</label>
+                    <select id="languageSelect" class="language-select">
+                        <option value="en">English</option>
+                        <option value="te">Telugu</option>
+                        <option value="hi">Hindi</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div id="errorMessage" class="message error-message"></div>
+            <div id="successMessage" class="message success-message"></div>
+
+            <!-- Withdrawal Form -->
+            <form id="withdrawForm" class="withdraw-form">
+                <div class="form-group">
+                    <label for="branchName" class="form-label" data-en="Branch Name" data-te="శాఖ పేరు" data-hi="शाखा का नाम">Branch Name</label>
+                    <input type="text" id="branchName" name="branchName" class="form-control" required>
+                    <small class="form-text" data-en="Example: SBI Hyderabad Main Branch" data-te="ఉదాహరణ: SBI హైదరాబాద్ మెయిన్ బ్రాంచ్" data-hi="उदाहरण: SBI हैदराबाद मुख्य शाखा">Example: SBI Hyderabad Main Branch</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountNumber" class="form-label" data-en="Account Number" data-te="ఖాతా సంఖ్య" data-hi="खाता संख्या">Account Number</label>
+                    <input type="text" id="accountNumber" name="accountNumber" class="form-control" required
+                           pattern="[0-9]{12}" title="Please enter a valid 12-digit account number">
+                    <small class="form-text" data-en="Example: 123456789012" data-te="ఉదాహరణ: 123456789012" data-hi="उदाहरण: 123456789012">Example: 123456789012</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountHolderName" class="form-label" data-en="Account Holder's Name" data-te="ఖాతా యజమాని పేరు" data-hi="खाताधारक का नाम">Account Holder's Name</label>
+                    <input type="text" id="accountHolderName" name="accountHolderName" class="form-control" required>
+                    <small class="form-text" data-en="Example: Karthikeya Reddy" data-te="ఉదాహరణ: కార్తికేయ రెడ్డి" data-hi="उदाहरण: कार्तिकेय रेड्डी">Example Reddy</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount" class="form-label" data-en="Amount to Withdraw" data-te="ఉపసంహరించడానికి మొత్తం" data-hi="निकालने की राशि">Amount to Withdraw</label>
+                    <input type="number" id="amount" name="amount" class="form-control" required
+                           min="0" step="0.01" title="Please enter a valid amount">
+                    <small class="form-text" data-en="Example: 5000" data-te="ఉదాహరణ: 5000" data-hi="उदाहरण: 5000">Example: 5000</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdrawalMode" class="form-label" data-en="Mode of Withdrawal" data-te="ఉపసంహరణ మోడ్" data-hi="निकासी का तरीका">Mode of Withdrawal</label>
+                    <select id="withdrawalMode" name="withdrawalMode" class="form-control" required>
+                        <option value="">Select mode</option>
+                        <option value="cash" data-en="Cash" data-te="నగదు" data-hi="नकद">Cash</option>
+                        <option value="cheque" data-en="Cheque" data-te="చెక్" data-hi="चेक">Cheque</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="chequeDetailsGroup" style="display: none;">
+                    <label for="chequeNumber" class="form-label" data-en="Cheque Number" data-te="చెక్ సంఖ్య" data-hi="चेक नंबर">Cheque Number</label>
+                    <input type="text" id="chequeNumber" name="chequeNumber" class="form-control">
+                    <label for="chequeBankName" class="form-label" data-en="Bank Name" data-te="బ్యాంక్ పేరు" data-hi="बैंक का नाम">Bank Name</label>
+                    <input type="text" id="chequeBankName" name="chequeBankName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" data-en="Submit Withdrawal" data-te="ఉపసంహరణ సమర్పించండి" data-hi="निकासी जमा करें">Submit Withdrawal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Voice Input Button -->
+    <button id="floatingVoiceBtn" class="floating-voice-btn" title="Voice Input">
+        <i class="fas fa-microphone"></i>
+    </button>
+    <div id="floatingVoiceStatus" class="floating-voice-status"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-icon">
+                <div class="modal-timer">6</div>
+            </div>
+            <h2 class="modal-title">Are you sure?</h2>
+            <p id="modalMessage" class="modal-message"></p>
+            <div class="modal-buttons">
+                <button id="modalCancel" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modalConfirm" class="modal-btn modal-btn-confirm">Yes, confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+    <script>
+        // Initialize jsPDF
+        window.jsPDF = window.jspdf.jsPDF;
+
+        // Helper functions
+        function getFormValue(id) {
+            const element = document.getElementById(id);
+            return element ? element.value.trim() : '';
+        }
+
+        function cleanText(text) {
+            if (!text || text.trim() === '') return '_________________';
+            return text.trim();
+        }
+
+        // Translation API function
+        async function translateText(text, sourceLang) {
+            if (!text || text.trim() === '') return '_________________';
+            
+            try {
+                // If text is already in English, return as is
+                if (sourceLang === 'en') return text;
+
+                // Use a free Google Translate proxy
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    return data[0][0][0];
+                }
+                return text;
+            } catch (error) {
+                console.error('Translation error:', error);
+                return text;
+            }
+        }
+
+        // Update the generatePDF function
+        async function generatePDF() {
+            try {
+                // Get the selected language
+                const selectedLang = document.getElementById('languageSelect').value;
+                
+                // Get and translate form values
+                const branchName = await translateText(getFormValue('branchName'), selectedLang);
+                const accountHolderName = await translateText(getFormValue('accountHolderName'), selectedLang);
+
+                console.log('Translated values:', {
+                    branchName,
+                    accountHolderName
+                });
+
+                const formData = {
+                    branchName: branchName || '_________________',
+                    accountNumber: cleanText(getFormValue('accountNumber')),
+                    accountHolderName: accountHolderName || '_________________',
+                    amount: getFormValue('amount')
+                };
+
+                // Create PDF
+                const doc = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: [125, 297]  // Reduced height, same width
+                });
+                
+                // Set font
+                doc.setFont('helvetica');
+                
+                // Add border around the form
+                doc.rect(10, 10, 277, 105);
+                
+                // Add Bank header
+                doc.setFontSize(16);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Bank Withdrawal slip', 20, 25);
+                
+                // Add "SAVINGS BANK" text on top right
+                doc.setFontSize(12);
+                doc.text('SAVINGS BANK', 230, 25);
+                
+                // Add horizontal lines to separate sections
+                doc.line(10, 32, 287, 32);
+                
+                // Add form fields
+                doc.setFontSize(11);
+                
+                // First row
+                doc.setFont('helvetica', 'bold');
+                doc.text('Account No.:', 20, 45);
+                doc.setFont('helvetica', 'normal');
+                doc.text('_________________________________', 62, 45);
+                doc.text(formData.accountNumber, 62, 44);
+                
+                doc.setFont('helvetica', 'bold');
+                doc.text('Branch:', 190, 45);
+                doc.setFont('helvetica', 'normal');
+                doc.text('_________________________________', 217, 45);
+                doc.text(formData.branchName, 217, 44);
+                
+                // Second row
+                doc.setFont('helvetica', 'bold');
+                doc.text('Pay Self:', 20, 60);
+                
+                // Get current date
+                const today = new Date();
+                doc.text('Date:', 200, 60);
+                
+                // Format date as DD/MM/YYYY with padding
+                const day = today.getDate().toString().padStart(2, '0');
+                const month = (today.getMonth() + 1).toString().padStart(2, '0');
+                const year = today.getFullYear().toString();
+                
+                // Add spacing after "Date:" and display full date
+                doc.setFont('helvetica', 'normal');
+                doc.text(`    ${day}/${month}/${year}`, 215, 60);
+                
+                // Third row - Rupees in words
+                doc.setFont('helvetica', 'bold');
+                doc.text('Rupees:', 20, 75);
+                doc.setFont('helvetica', 'normal');
+                doc.text('_______________________________________________________________________', 55, 75);
+                const amountInWords = numberToWords(formData.amount);
+                doc.text(amountInWords, 55, 74);
+                
+                // Fourth row - Amount in figures
+                doc.setFont('helvetica', 'bold');
+                doc.text('\u20B9', 20, 90);
+                doc.setFont('helvetica', 'normal');
+                const formattedAmount = Number(formData.amount).toLocaleString('en-IN');
+                doc.text(formattedAmount, 27, 89);
+                
+                // Fifth row
+                doc.setFont('helvetica', 'bold');
+                doc.text('PAY CASH', 20, 105);
+                doc.text('Name of a/c. holder:', 120, 105);
+                doc.setFont('helvetica', 'normal');
+                doc.text('___________________________________', 182, 105);
+                doc.text(formData.accountHolderName, 182, 104);
+                
+                // Bottom row
+                doc.setFont('helvetica', 'normal');
+                doc.text('Nomination facility available', 20, 112);
+                
+                doc.setFont('helvetica', 'bold');
+                doc.text('Signature:', 150, 112);
+                doc.setFont('helvetica', 'normal');
+                doc.text('_______________________________________', 180, 112);
+                
+                // Save the PDF
+                const pdfBase64 = doc.output('datauristring').split(',')[1];
+                
+                // Send PDF to server
+                fetch('/save-withdrawal-pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        pdfData: pdfBase64,
+                        formData: formData
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Withdrawal slip saved successfully!');
+                    } else {
+                        throw new Error(data.message || 'Failed to save PDF');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error saving PDF:', error);
+                    alert('Failed to save PDF. Please try again.');
+                });
+
+            } catch (error) {
+                console.error('PDF generation error:', error);
+                alert('Failed to generate PDF. Please try again.');
+            }
+        }
+
+        // Helper function to convert number to words
+        function numberToWords(number) {
+            const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+            const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+            
+            function convertLessThanOneThousand(n) {
+                if (n === 0) return '';
+                
+                if (n < 10) return ones[n];
+                
+                if (n < 20) return teens[n - 10];
+                
+                if (n < 100) {
+                    return tens[Math.floor(n / 10)] + (n % 10 !== 0 ? ' ' + ones[n % 10] : '');
+                }
+                
+                return ones[Math.floor(n / 100)] + ' Hundred' + (n % 100 !== 0 ? ' and ' + convertLessThanOneThousand(n % 100) : '');
+            }
+            
+            if (number === 0) return 'Zero Rupees Only';
+            
+            const num = parseInt(number);
+            if (isNaN(num)) return '';
+            
+            let words = '';
+            
+            if (num >= 10000000) {
+                words += convertLessThanOneThousand(Math.floor(num / 10000000)) + ' Crore ';
+                number %= 10000000;
+            }
+            
+            if (num >= 100000) {
+                words += convertLessThanOneThousand(Math.floor(num / 100000)) + ' Lakh ';
+                number %= 100000;
+            }
+            
+            if (num >= 1000) {
+                words += convertLessThanOneThousand(Math.floor(num / 1000)) + ' Thousand ';
+                number %= 1000;
+            }
+            
+            words += convertLessThanOneThousand(number);
+            
+            return words.trim() + ' Rupees Only';
+        }
+
+        // Handle form submission
+        document.getElementById('withdrawForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generatePDF();
+        });
+
+        // Handle withdrawal mode change
+        document.getElementById('withdrawalMode').addEventListener('change', function() {
+            const chequeDetailsGroup = document.getElementById('chequeDetailsGroup');
+            chequeDetailsGroup.style.display = this.value === 'cheque' ? 'block' : 'none';
+        });
+
+        // Update form labels based on selected language
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const language = this.value;
+            const labels = document.querySelectorAll('[data-en]');
+            
+            labels.forEach(label => {
+                label.textContent = label.getAttribute(`data-${language}`);
+            });
+        });
+    </script>
+</body>
+</html> 

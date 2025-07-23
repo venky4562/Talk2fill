@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Opening Form - Talk2Fill</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/account-opening.css">
+</head>
+<body>
+    <!-- Add these elements right after the body tag opens -->
+    <div id="recordingStatus" class="recording-status"></div>
+    <div id="recordingWave" class="recording-wave"></div>
+
+    <!-- Add the voice status indicator -->
+    <div class="voice-status" id="voiceStatus" 
+         data-en="Recording... Speak now!" 
+         data-hi="रिकॉर्डिंग... अब बोलिए!" 
+         data-te="రికార్డింగ్... ఇప్పుడు మాట్లాడండి!">Recording... Speak now!</div>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-content">
+                <a href="/" class="logo">Talk2Fill</a>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="deposit.html">Deposit</a>
+                    <a href="withdraw.html">Withdraw</a>
+                    <a href="account-opening.html" class="active">Open Account</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <div class="form-header">
+                <h1 class="form-title" data-en="Open New Account" data-hi="नया खाता खोलें" data-te="కొత్త ఖాతా తెరవండి">Open New Account</h1>
+                <div class="language-selector">
+                    <label for="languageSelect" class="form-label" data-en="Select Language:" data-hi="भाषा चुनें:" data-te="భాష ఎంచుకోండి:">Select Language:</label>
+                    <select id="languageSelect" class="language-select">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+            </div>
+            
+            <form id="account-opening-form">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        <span data-en="Personal Information" data-hi="व्यक्तिगत जानकारी" data-te="వ్యక్తిగత సమాచారం">Personal Information</span>
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="full-name" data-en="Full Name" data-hi="पूरा नाम" data-te="పూర్తి పేరు">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" required>
+                            <div class="example-text" data-en="Example: John Smith" data-hi="उदाहरण: राजेश कुमार" data-te="ఉదాహరణ: రాజేష్ కుమార్">Example: John Smith</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob" data-en="Date of Birth" data-hi="जन्म तिथि" data-te="పుట్టిన తేది">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-en="Gender" data-hi="लिंग" data-te="లింగం">Gender</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="male" required>
+                                    <span data-en="Male" data-hi="पुरुष" data-te="పురుషుడు">Male</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="female">
+                                    <span data-en="Female" data-hi="महिला" data-te="స్త్రీ">Female</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="other">
+                                    <span data-en="Other" data-hi="अन्य" data-te="ఇతర">Other</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nationality" data-en="Nationality" data-hi="राष्ट्रीयता" data-te="జాతీయత">Nationality</label>
+                            <input type="text" id="nationality" name="nationality" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fathers-name" data-en="Father's Name" data-hi="पिता का नाम" data-te="తండ్రి పేరు">Father's Name</label>
+                            <input type="text" id="fathers-name" name="fathers-name" required>
+                            <div class="example-text" data-en="Example: John Smith Sr." data-hi="उदाहरण: राजेश कुमार" data-te="ఉదాహరణ: రాజేష్ కుమార్">Example: John Smith Sr.</div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-en="Note: Please ensure all information is accurate and complete." 
+                              data-hi="नोट: कृपया सुनिश्चित करें कि सभी जानकारी सटीक और पूर्ण है।" 
+                              data-te="గమనిక: దయచేసి అన్ని సమాచారం ఖచ్చితమైనది మరియు పూర్తయిందని నిర్ధారించుకోండి.">Note: Please ensure all information is accurate and complete.</span>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-address-card"></i>
+                        <span data-en="Contact Information" data-hi="संपर्क जानकारी" data-te="సంప్రదింపు సమాచారం">Contact Information</span>
+                    </h2>
+                    <div class="form-grid">
+            <div class="form-group">
+                            <label for="email" data-en="Email Address" data-hi="ईमेल पता" data-te="ఇమెయిల్ చిరునామా">Email Address</label>
+                <input type="email" id="email" name="email" required>
+                            <div class="example-text" data-en="Example: john@example.com" data-hi="उदाहरण: john@example.com" data-te="ఉదాహరణ: john@example.com">Example: john@example.com</div>
+            </div>
+            
+            <div class="form-group">
+                            <label for="phone" data-en="Phone Number" data-hi="फोन नंबर" data-te="ఫోన్ నంబర్">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                            <div class="example-text" data-en="Example: +1234567890" data-hi="उदाहरण: +1234567890" data-te="ఉదాహరణ: +1234567890">Example: +1234567890</div>
+            </div>
+            
+            <div class="form-group">
+                            <label for="country" data-en="Country" data-hi="देश" data-te="దేశం">Country</label>
+                            <input type="text" id="country" name="country" value="India" required>
+            </div>
+
+            <div class="form-group">
+                            <label for="zipcode" data-en="PIN Code" data-hi="पिन कोड" data-te="పిన్ కోడ్">PIN Code</label>
+                            <input type="text" id="zipcode" name="zipcode" maxlength="6" pattern="[0-9]{6}" required>
+                            <div class="example-text" data-en="Example: 500001" data-hi="उदाहरण: 500001" data-te="ఉదాహరణ: 500001">Example: 500001</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state" data-en="State" data-hi="राज्य" data-te="రాష్ట్రం">State</label>
+                            <input type="text" id="state" name="state" required readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city" data-en="City" data-hi="शहर" data-te="నగరం">City</label>
+                            <input type="text" id="city" name="city" required readonly>
+                        </div>
+
+                        <div class="form-group form-grid-full">
+                            <label for="address" data-en="Address" data-hi="पता" data-te="చిరునామా">Address</label>
+                            <textarea id="address" name="address" rows="3" required 
+                                    style="width: 100%; border: 1px solid #dee2e6; border-radius: 0.375rem; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; resize: vertical; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;"
+                                    placeholder="Enter your complete address"></textarea>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-en="Note: Please provide valid address proof documents." 
+                              data-hi="नोट: कृपया वैध पता प्रमाण दस्तावेज प्रदान करें।" 
+                              data-te="గమనిక: దయచేసి చెల్లుబాటు అయ్యే చిరునామా రుజువు పత్రాలను అందించండి.">Note: Please provide valid address proof documents.</span>
+                    </div>
+                </div>
+
+                <!-- Financial Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-wallet"></i>
+                        <span data-en="Financial Information" data-hi="वित्तीय जानकारी" data-te="ఆర్థిక సమాచారం">Financial Information</span>
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="occupation" data-en="Occupation" data-hi="व्यवसाय" data-te="వృత్తి">Occupation</label>
+                            <input type="text" id="occupation" name="occupation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="annual-income" data-en="Annual Income" data-hi="वार्षिक आय" data-te="వార్షిక ఆదాయం">Annual Income</label>
+                            <input type="number" id="annual-income" name="annual-income" required>
+                            <div class="example-text" data-en="Example: 50000" data-hi="उदाहरण: 50000" data-te="ఉదాహరణ: 50000">Example: 50000</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="account-type" data-en="Account Type" data-hi="खाता प्रकार" data-te="ఖాతా రకం">Account Type</label>
+                <select id="account-type" name="account-type" required>
+                                <option value="" data-en="Select Account Type" data-hi="खाता प्रकार चुनें" data-te="ఖాతా రకం ఎంచుకోండి">Select Account Type</option>
+                                <option value="savings" data-en="Savings" data-hi="बचत" data-te="సేవింగ్స్">Savings</option>
+                                <option value="current" data-en="Current" data-hi="चालू" data-te="కరెంట్">Current</option>
+                </select>
+            </div>
+            
+                        <div class="form-group">
+                            <label for="initial-deposit" data-en="Initial Deposit (₹)" data-hi="प्रारंभिक जमा (₹)" data-te="ప్రారంభ డిపాజిట్ (₹)">Initial Deposit (₹)</label>
+                            <input type="number" id="initial-deposit" name="initial-deposit" min="1000" required>
+                            <div class="example-text" data-en="Minimum: ₹1,000" data-hi="न्यूनतम: ₹1,000" data-te="కనిష్టం: ₹1,000">Minimum: ₹1,000</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="aadhaarNumber" data-en="Aadhaar Number" data-hi="आधार नंबर" data-te="ఆధార్ నంబర్">Aadhaar Number</label>
+                            <input type="text" id="aadhaarNumber" name="aadhaarNumber" required>
+                            <div class="example-text" data-en="Example: 1234-5678-9012" data-hi="उदाहरण: 1234-5678-9012" data-te="ఉదాహరణ: 1234-5678-9012">Example: 1234-5678-9012</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="panNumber" data-en="PAN Number" data-hi="पैन नंबर" data-te="పాన్ నంబర్">PAN Number</label>
+                            <input type="text" id="panNumber" name="panNumber" pattern="[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]" maxlength="10" style="text-transform: uppercase;" required>
+                            <div class="example-text" data-en="Example: ABCTY1234Z" data-hi="उदाहरण: ABCTY1234Z" data-te="ఉదాహరణ: ABCTY1234Z">Example: ABCTY1234Z</div>
+                            <div class="error-text" id="panError"></div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-en="Note: Please provide valid income proof documents." 
+                              data-hi="नोट: कृपया वैध आय प्रमाण दस्तावेज प्रदान करें।" 
+                              data-te="గమనిక: దయచేసి చెల్లుబాటు అయ్యే ఆదాయ రుజువు పత్రాలను అందించండి.">Note: Please provide valid income proof documents.</span>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-en="Additional Information" data-hi="अतिरिक्त जानकारी" data-te="అదనపు సమాచారం">Additional Information</span>
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="mothers-name" data-en="Mother's Maiden Name" data-hi="माँ का नाम" data-te="తల్లి పేరు">Mother's Maiden Name</label>
+                            <input type="text" id="mothers-name" name="mothers-name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nominee Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-friends"></i>
+                        <span data-en="Nominee Information" data-hi="नामांकन जानकारी" data-te="నామినీ సమాచారం">Nominee Information</span>
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nominee-name" data-en="Nominee Name" data-hi="नामांकित व्यक्ति का नाम" data-te="నామినీ పేరు">Nominee Name</label>
+                            <input type="text" id="nominee-name" name="nominee-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nominee-relationship" data-en="Nominee Relationship" data-hi="नामांकित व्यक्ति का रिश्ता" data-te="నామినీతో సంబంధం">Nominee Relationship</label>
+                            <input type="text" id="nominee-relationship" name="nominee-relationship" required>
+                            <div class="example-text" data-en="Example: Spouse, Parent, Child" data-hi="उदाहरण: पति/पत्नी, माता-पिता, बच्चा" data-te="ఉదాహరణ: భార్య/భర్త, తల్లిదండ్రులు, పిల్లలు">Example: Spouse, Parent, Child</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nominee-dob" data-en="Nominee Date of Birth" data-hi="नामांकित व्यक्ति की जन्म तिथि" data-te="నామినీ పుట్టిన తేది">Nominee Date of Birth</label>
+                            <input type="date" id="nominee-dob" name="nominee-dob" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" data-en="Open Account" data-hi="खाता खोलें" data-te="ఖాతా తెరవండి">
+                        <i class="fas fa-check"></i>
+                        <span>Open Account</span>
+                    </button>
+                </div>
+        </form>
+        </div>
+    </main>
+
+    <!-- Floating Voice Input Button -->
+    <button id="floatingVoiceBtn" class="floating-voice-btn" title="Voice Input">
+        <i class="fas fa-microphone"></i>
+    </button>
+    <div id="floatingVoiceStatus" class="floating-voice-status"
+         data-en="Click microphone to start recording" 
+         data-hi="रिकॉर्डिंग शुरू करने के लिए माइक्रोफ़ोन पर क्लिक करें" 
+         data-te="రికార్డింగ్ ప్రారంభించడానికి మైక్రోఫోన్‌ను క్లిక్ చేయండి">Click microphone to start recording</div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Talk2Fill. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-icon">
+                <div class="modal-timer">6</div>
+            </div>
+            <h2 class="modal-title" data-en="Are you sure?" data-hi="क्या आप सुनिश्चित हैं?" data-te="మీరు ఖచ్చితంగా ఉన్నారా?">Are you sure?</h2>
+            <p id="modalMessage" class="modal-message"></p>
+            <div class="modal-buttons">
+                <button id="modalCancel" class="modal-btn modal-btn-cancel" data-en="Cancel" data-hi="रद्द करें" data-te="రద్దు చేయండి">Cancel</button>
+                <button id="modalConfirm" class="modal-btn modal-btn-confirm" data-en="Yes, confirm" data-hi="हाँ, पुष्टि करें" data-te="అవును, నిర్ధారించండి">Yes, confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+    <script>
+        // Initialize jsPDF
+        window.jsPDF = window.jspdf.jsPDF;
+
+        // Helper functions
+        function getFormValue(id) {
+            const element = document.getElementById(id);
+            return element ? element.value.trim() : '';
+        }
+
+        function cleanText(text) {
+            if (!text || text.trim() === '') return '_________________';
+            return text.trim();
+        }
+
+        // Translation API function
+        async function translateText(text, sourceLang) {
+            if (!text || text.trim() === '') return '_________________';
+            
+            try {
+                // If text is already in English, return as is
+                if (sourceLang === 'en') return text;
+
+                // Use a free Google Translate proxy
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    return data[0][0][0];
+                }
+                return text;
+            } catch (error) {
+                console.error('Translation error:', error);
+                return text;
+            }
+        }
+
+        // Update the generatePDF function
+        async function generatePDF() {
+            try {
+                // Get the selected language
+                const selectedLang = document.getElementById('languageSelect').value;
+                
+                // Get and translate form values
+                const fullName = await translateText(getFormValue('full-name'), selectedLang);
+                const fathersName = await translateText(getFormValue('fathers-name'), selectedLang);
+                const mothersName = await translateText(getFormValue('mothers-name'), selectedLang);
+                const address = await translateText(getFormValue('address'), selectedLang);
+                const occupation = await translateText(getFormValue('occupation'), selectedLang);
+                const nomineeName = await translateText(getFormValue('nominee-name'), selectedLang);
+                const nomineeRelationship = await translateText(getFormValue('nominee-relationship'), selectedLang);
+
+                // Create PDF with auto page break
+                const doc = new jsPDF();
+                
+                // Set font
+                doc.setFont('helvetica');
+                
+                // Add header with bank logo and title
+                doc.setFontSize(24);
+                doc.setFont('helvetica', 'bold');
+                doc.text('BANK OF BARODA', 105, 20, { align: 'center' });
+                
+                doc.setFontSize(16);
+                doc.text('Account Opening Form', 105, 30, { align: 'center' });
+                
+                // Add horizontal line
+                doc.setDrawColor(0);
+                doc.setLineWidth(0.5);
+                doc.line(20, 35, 190, 35);
+                
+                // Set initial y position
+                let y = 45;
+                
+                // Personal Information Section
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('1. Personal Information', 20, y);
+                y += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                
+                // Create a table for personal information
+                const personalInfo = [
+                    ['Full Name:', fullName || '_________________'],
+                    ['Date of Birth:', getFormValue('dob') || '_________________'],
+                    ['Gender:', getFormValue('gender') || '_________________'],
+                    ['Father\'s Name:', fathersName || '_________________'],
+                    ['Mother\'s Name:', mothersName || '_________________'],
+                    ['Nationality:', getFormValue('nationality') || '_________________'],
+                    ['Marital Status:', getFormValue('marital-status') || '_________________']
+                ];
+                
+                personalInfo.forEach(([label, value]) => {
+                    if (y > 250) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(label, 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(value, 60, y);
+                    y += 10;
+                });
+                
+                y += 5;
+                
+                // Contact Information Section
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('2. Contact Information', 20, y);
+                y += 10;
+                
+                doc.setFontSize(11);
+                const contactInfo = [
+                    ['Email:', getFormValue('email') || '_________________'],
+                    ['Phone:', getFormValue('phone') || '_________________'],
+                    ['Address:', address || '_________________'],
+                    ['City:', getFormValue('city') || '_________________'],
+                    ['State:', getFormValue('state') || '_________________'],
+                    ['PIN Code:', getFormValue('zipcode') || '_________________'],
+                    ['Country:', getFormValue('country') || '_________________']
+                ];
+                
+                contactInfo.forEach(([label, value]) => {
+                    if (y > 250) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(label, 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    if (label === 'Address:') {
+                        doc.text(value, 60, y, { maxWidth: 130 });
+                        y += 20;
+                    } else {
+                        doc.text(value, 60, y);
+                        y += 10;
+                    }
+                });
+                
+                y += 5;
+                
+                // Financial Information Section
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('3. Financial Information', 20, y);
+                y += 10;
+                
+                doc.setFontSize(11);
+                const financialInfo = [
+                    ['Occupation:', occupation || '_________________'],
+                    ['Annual Income:', `\u20B9${Number(getFormValue('annual-income')).toLocaleString('en-IN')}` || '_________________'],
+                    ['Account Type:', getFormValue('account-type') || '_________________'],
+                    ['Initial Deposit:', `\u20B9${Number(getFormValue('initial-deposit')).toLocaleString('en-IN')}` || '_________________'],
+                    ['Aadhaar Number:', getFormValue('aadhaarNumber') || '_________________'],
+                    ['PAN Number:', getFormValue('panNumber') || '_________________']
+                ];
+                
+                financialInfo.forEach(([label, value]) => {
+                    if (y > 250) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(label, 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(value, 60, y);
+                    y += 10;
+                });
+                
+                y += 5;
+                
+                // Nominee Information Section
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('4. Nominee Information', 20, y);
+                y += 10;
+                
+                doc.setFontSize(11);
+                const nomineeInfo = [
+                    ['Nominee Name:', nomineeName || '_________________'],
+                    ['Relationship:', nomineeRelationship || '_________________'],
+                    ['Date of Birth:', getFormValue('nominee-dob') || '_________________']
+                ];
+                
+                nomineeInfo.forEach(([label, value]) => {
+                    if (y > 250) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(label, 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(value, 60, y);
+                    y += 10;
+                });
+                
+                y += 10;
+                
+                // Declaration
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('5. Declaration', 20, y);
+                y += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                const declaration = 'I hereby declare that the information provided above is true and correct to the best of my knowledge. I understand that any false information may result in the rejection of my application or closure of my account.';
+                doc.text(declaration, 20, y, { maxWidth: 170 });
+                
+                y += 20;
+                doc.text('Date: ' + new Date().toLocaleDateString(), 20, y);
+                doc.text('Signature: _________________', 120, y);
+                
+                // Save the PDF
+                const pdfBase64 = doc.output('datauristring').split(',')[1];
+                
+                // Download the PDF
+                doc.save('account_opening_form.pdf');
+                
+                // Send PDF to server
+                fetch('/save-withdrawal-pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        pdfData: pdfBase64,
+                        formData: {
+                            fullName,
+                            fathersName,
+                            mothersName,
+                            address,
+                            occupation,
+                            nomineeName,
+                            nomineeRelationship,
+                            // Add other form fields
+                            dob: getFormValue('dob'),
+                            gender: getFormValue('gender'),
+                            nationality: getFormValue('nationality'),
+                            maritalStatus: getFormValue('marital-status'),
+                            email: getFormValue('email'),
+                            phone: getFormValue('phone'),
+                            city: getFormValue('city'),
+                            state: getFormValue('state'),
+                            zipcode: getFormValue('zipcode'),
+                            country: getFormValue('country'),
+                            annualIncome: getFormValue('annual-income'),
+                            accountType: getFormValue('account-type'),
+                            initialDeposit: getFormValue('initial-deposit'),
+                            aadhaarNumber: getFormValue('aadhaarNumber'),
+                            panNumber: getFormValue('panNumber'),
+                            nomineeDob: getFormValue('nominee-dob')
+                        }
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Account opening form saved successfully!');
+                    } else {
+                        throw new Error(data.message || 'Failed to save PDF');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error saving PDF:', error);
+                    alert('Failed to save PDF. Please try again.');
+                });
+
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Failed to generate PDF. Please try again.');
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('account-opening-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generatePDF();
+        });
+
+        // Cookie functions
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+            }
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+        }
+
+        // Save form data to cookies
+        function saveFormData() {
+            const form = document.getElementById('account-opening-form');
+            const formData = new FormData(form);
+            
+            // Save each form field to a cookie
+            for (const [key, value] of formData.entries()) {
+                if (value) {  // Only save if there's a value
+                    setCookie('form_' + key, value, 1); // Save for 1 day
+                }
+            }
+
+            // Save radio button selection
+            const genderRadios = form.querySelectorAll('input[name="gender"]');
+            genderRadios.forEach(radio => {
+                if (radio.checked) {
+                    setCookie('form_gender', radio.value, 1);
+                }
+            });
+        }
+
+        // Load form data from cookies
+        function loadFormData() {
+            const form = document.getElementById('account-opening-form');
+            
+            // Get all form elements
+            const inputs = form.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                const cookieValue = getCookie('form_' + input.name);
+                if (cookieValue) {
+                    if (input.type === 'radio') {
+                        if (input.value === cookieValue) {
+                            input.checked = true;
+                        }
+                    } else {
+                        input.value = cookieValue;
+                    }
+                }
+            });
+        }
+
+        // Clear form data and cookies
+        function clearFormData() {
+            const form = document.getElementById('account-opening-form');
+            const inputs = form.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                deleteCookie('form_' + input.name);
+            });
+            
+            form.reset();
+        }
+
+        // Load saved data when page loads
+        window.addEventListener('load', loadFormData);
+
+        // Save data when input changes
+        document.getElementById('account-opening-form').addEventListener('input', saveFormData);
+
+        // Language switching functionality
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const language = this.value;
+            // Save selected language to cookie
+            setCookie('selected_language', language, 30); // Save for 30 days
+            
+            const elements = document.querySelectorAll('[data-en]');
+            
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${language}`);
+                if (text) {
+                    if (element.tagName === 'INPUT' && element.getAttribute('placeholder')) {
+                        element.setAttribute('placeholder', text);
+                    }
+                    else if (element.tagName === 'OPTION') {
+                        element.textContent = text;
+                    }
+                    else {
+                        element.textContent = text;
+                    }
+                }
+            });
+
+            // Update error messages based on language
+            const errorMessages = {
+                en: {
+                    required: 'This field is required',
+                    invalidEmail: 'Please enter a valid email address',
+                    invalidPhone: 'Please enter a valid phone number',
+                    invalidId: 'Please enter a valid identification number'
+                },
+                hi: {
+                    required: 'यह फ़ील्ड आवश्यक है',
+                    invalidEmail: 'कृपया एक वैध ईमेल पता दर्ज करें',
+                    invalidPhone: 'कृपया एक वैध फ़ोन नंबर दर्ज करें',
+                    invalidId: 'कृपया एक वैध पहचान संख्या दर्ज करें'
+                },
+                te: {
+                    required: 'ఈ ఫీల్డ్ అవసరం',
+                    invalidEmail: 'దయచేసి చెల్లుబాటు అయ్యే ఇమెయిల్ చిరునామాను నమోదు చేయండి',
+                    invalidPhone: 'దయచేసి చెల్లుబాటు అయ్యే ఫోన్ నంబర్‌ను నమోదు చేయండి',
+                    invalidId: 'దయచేసి చెల్లుబాటు అయ్యే గుర్తింపు సంఖ్యను నమోదు చేయండి'
+                }
+            };
+
+            // Store the selected language and error messages globally
+            window.selectedLanguage = language;
+            window.errorMessages = errorMessages[language];
+        });
+
+        // Load saved language on page load
+        window.addEventListener('load', function() {
+            const savedLanguage = getCookie('selected_language');
+            if (savedLanguage) {
+                document.getElementById('languageSelect').value = savedLanguage;
+                document.getElementById('languageSelect').dispatchEvent(new Event('change'));
+            } else {
+                // Trigger initial language update if no saved language
+                document.getElementById('languageSelect').dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Update modal text based on selected language
+        function updateModalLanguage(language) {
+            const modalTitle = document.querySelector('.modal-title');
+            const modalCancel = document.getElementById('modalCancel');
+            const modalConfirm = document.getElementById('modalConfirm');
+            
+            modalTitle.textContent = modalTitle.getAttribute(`data-${language}`);
+            modalCancel.textContent = modalCancel.getAttribute(`data-${language}`);
+            modalConfirm.textContent = modalConfirm.getAttribute(`data-${language}`);
+        }
+
+        // Update modal message with form data
+        function updateModalMessage(formData) {
+            const modalMessage = document.getElementById('modalMessage');
+            const currentLanguage = document.querySelector('input[name="language"]:checked').value;
+            
+            let message = '';
+            if (currentLanguage === 'en') {
+                message = `Please confirm your account opening details:\n\n`;
+                message += `Name: ${formData.get('full-name')}\n`;
+                message += `Date of Birth: ${formData.get('dob')}\n`;
+                message += `Gender: ${formData.get('gender')}\n`;
+                message += `Nationality: ${formData.get('nationality')}\n`;
+                message += `Country: ${formData.get('country')}\n`;
+                message += `Email: ${formData.get('email')}\n`;
+                message += `Phone: ${formData.get('phone')}\n`;
+                message += `Address: ${formData.get('address')}\n`;
+                message += `City: ${formData.get('city')}\n`;
+                message += `State: ${formData.get('state')}\n`;
+                message += `ZIP Code: ${formData.get('zipcode')}\n`;
+                message += `Occupation: ${formData.get('occupation')}\n`;
+                message += `Annual Income: ${formData.get('annual-income')}\n`;
+                message += `Account Type: ${formData.get('account-type')}\n`;
+                message += `ID Number: ${formData.get('aadhaarNumber')}\n`;
+                message += `Father's Name: ${formData.get('fathers-name')}\n`;
+                message += `Mother's Maiden Name: ${formData.get('mothers-name')}\n`;
+                message += `Nominee Name: ${formData.get('nominee-name')}\n`;
+                message += `Nominee Relationship: ${formData.get('nominee-relationship')}\n`;
+                message += `Nominee Date of Birth: ${formData.get('nominee-dob')}`;
+            } else if (currentLanguage === 'hi') {
+                message = `कृपया अपने खाता खोलने का विवरण पुष्टि करें:\n\n`;
+                message += `नाम: ${formData.get('full-name')}\n`;
+                message += `जन्म तिथि: ${formData.get('dob')}\n`;
+                message += `लिंग: ${formData.get('gender')}\n`;
+                message += `राष्ट्रीयता: ${formData.get('nationality')}\n`;
+                message += `देश: ${formData.get('country')}\n`;
+                message += `ईमेल: ${formData.get('email')}\n`;
+                message += `फ़ोन: ${formData.get('phone')}\n`;
+                message += `पता: ${formData.get('address')}\n`;
+                message += `शहर: ${formData.get('city')}\n`;
+                message += `राज्य: ${formData.get('state')}\n`;
+                message += `ज़िप कोड: ${formData.get('zipcode')}\n`;
+                message += `व्यवसाय: ${formData.get('occupation')}\n`;
+                message += `वार्षिक आय: ${formData.get('annual-income')}\n`;
+                message += `खाता प्रकार: ${formData.get('account-type')}\n`;
+                message += `पहचान संख्या: ${formData.get('aadhaarNumber')}\n`;
+                message += `पिता का नाम: ${formData.get('fathers-name')}\n`;
+                message += `माँ का पहला नाम: ${formData.get('mothers-name')}\n`;
+                message += `नामांकित व्यक्ति का नाम: ${formData.get('nominee-name')}\n`;
+                message += `नामांकित व्यक्ति का संबंध: ${formData.get('nominee-relationship')}\n`;
+                message += `नामांकित व्यक्ति की जन्म तिथि: ${formData.get('nominee-dob')}`;
+            } else if (currentLanguage === 'te') {
+                message = `దయచేసి మీ ఖాతా తెరవడం వివరాలను నిర్ధారించండి:\n\n`;
+                message += `పేరు: ${formData.get('full-name')}\n`;
+                message += `పుట్టిన తేదీ: ${formData.get('dob')}\n`;
+                message += `లింగం: ${formData.get('gender')}\n`;
+                message += `జాతీయత: ${formData.get('nationality')}\n`;
+                message += `దేశం: ${formData.get('country')}\n`;
+                message += `ఈమెయిల్: ${formData.get('email')}\n`;
+                message += `ఫోన్: ${formData.get('phone')}\n`;
+                message += `చిరునామా: ${formData.get('address')}\n`;
+                message += `నగరం: ${formData.get('city')}\n`;
+                message += `రాజ్యం: ${formData.get('state')}\n`;
+                message += `ZIP కోడ్: ${formData.get('zipcode')}\n`;
+                message += `వృత్తి: ${formData.get('occupation')}\n`;
+                message += `వార్షిక ఆదాయం: ${formData.get('annual-income')}\n`;
+                message += `ఖాతా రకం: ${formData.get('account-type')}\n`;
+                message += `గుర్తింపు సంఖ్య: ${formData.get('aadhaarNumber')}\n`;
+                message += `తండ్రి పేరు: ${formData.get('fathers-name')}\n`;
+                message += `తల్లి పేరు: ${formData.get('mothers-name')}\n`;
+                message += `నామినీ పేరు: ${formData.get('nominee-name')}\n`;
+                message += `నామినీ సంబంధం: ${formData.get('nominee-relationship')}\n`;
+                message += `నామినీ పుట్టిన తేది: ${formData.get('nominee-dob')}`;
+            }
+            
+            modalMessage.textContent = message;
+        }
+
+        // Update form submission handler
+        document.getElementById('account-opening-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            updateModalMessage(formData);
+            
+            // Update modal language based on selected language
+            const currentLanguage = document.querySelector('input[name="language"]:checked').value;
+            updateModalLanguage(currentLanguage);
+            
+            // Show confirmation modal
+            document.getElementById('confirmationModal').style.display = 'flex';
+            
+            // Start countdown timer
+            let countdown = 6;
+            const timerElement = document.querySelector('.modal-timer');
+            const timer = setInterval(() => {
+                countdown--;
+                timerElement.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('confirmationModal').style.display = 'none';
+                    handleFormSubmission(formData);
+                }
+            }, 1000);
+        });
+
+        // Handle modal cancel
+        document.getElementById('modalCancel').addEventListener('click', function() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        });
+
+        // Handle modal confirm
+        document.getElementById('modalConfirm').addEventListener('click', function() {
+            document.getElementById('confirmationModal').style.display = 'none';
+            const formData = new FormData(document.getElementById('account-opening-form'));
+            handleFormSubmission(formData);
+        });
+
+        // Update modal language when language is changed
+        document.querySelectorAll('input[name="language"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                updateModalLanguage(this.value);
+            });
+        });
+
+        // Add pincode auto-fill functionality
+        document.getElementById('zipcode').addEventListener('change', async function() {
+            const pincode = this.value;
+            if (pincode.length === 6) {
+                try {
+                    const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+                    const data = await response.json();
+                    
+                    if (data[0].Status === "Success") {
+                        const postOffice = data[0].PostOffice[0];
+                        document.getElementById('city').value = postOffice.District;
+                        document.getElementById('state').value = postOffice.State;
+                
+                // Show success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Address Details Updated',
+                            text: `City: ${postOffice.District}, State: ${postOffice.State}`,
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        // Show error message
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Pincode',
+                            text: 'Please enter a valid 6-digit pincode',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+            } catch (error) {
+                    console.error('Error fetching pincode details:', error);
+                    // Show error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to fetch address details. Please try again.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }
+            } else {
+                // Show error message for invalid length
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Pincode',
+                    text: 'Please enter a valid 6-digit pincode',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        });
+
+        // Add PAN card validation
+        document.getElementById('panNumber').addEventListener('input', function(e) {
+            const pan = e.target.value.toUpperCase();
+            e.target.value = pan; // Force uppercase
+            const errorDiv = document.getElementById('panError');
+            const panRegex = /^[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]$/;
+            
+            if (pan.length > 0) {
+                if (pan.length !== 10) {
+                    errorDiv.textContent = 'PAN must be exactly 10 characters';
+                    errorDiv.style.color = 'red';
+                    e.target.setCustomValidity('PAN must be exactly 10 characters');
+                } else if (!panRegex.test(pan)) {
+                    let errorMessage = '';
+                    if (!/^[A-Z]{3}/.test(pan)) {
+                        errorMessage = 'First three characters must be letters';
+                    } else if (!'PCHABGJLFT'.includes(pan[3])) {
+                        errorMessage = 'Fourth character must be P, C, H, A, B, G, J, L, F, or T';
+                    } else if (!/[A-Z]/.test(pan[4])) {
+                        errorMessage = 'Fifth character must be a letter';
+                    } else if (!/[0-9]{4}/.test(pan.substr(5, 4))) {
+                        errorMessage = 'Characters 6-9 must be numbers';
+                    } else if (!/[A-Z]/.test(pan[9])) {
+                        errorMessage = 'Last character must be a letter';
+                    }
+                    errorDiv.textContent = errorMessage;
+                    errorDiv.style.color = 'red';
+                    e.target.setCustomValidity(errorMessage);
+                } else {
+                    errorDiv.textContent = '✓ Valid PAN format';
+                    errorDiv.style.color = 'green';
+                    e.target.setCustomValidity('');
+                }
+            } else {
+                errorDiv.textContent = '';
+                e.target.setCustomValidity('');
+            }
+        });
+
+        // Add tooltip explaining PAN format
+        const panTooltip = `
+        PAN Format Guide:
+        - First 3 characters: Letters (A-Z)
+        - 4th character: Status (P: Individual, C: Company, H: HUF, A: AOP, B: BOI, G: Government, J: Artificial Judicial Person, L: Local Authority, F: Firm, T: Trust)
+        - 5th character: First letter of your surname/last name
+        - Next 4 characters: Numbers (0-9)
+        - Last character: Letter (A-Z)
+        `;
+
+        document.getElementById('panNumber').setAttribute('title', panTooltip);
+
+        // Update error messages for different languages
+        const panErrorMessages = {
+            en: {
+                length: 'PAN must be exactly 10 characters',
+                firstThree: 'First three characters must be letters',
+                fourth: 'Fourth character must be P, C, H, A, B, G, J, L, F, or T',
+                fifth: 'Fifth character must be a letter',
+                numbers: 'Characters 6-9 must be numbers',
+                last: 'Last character must be a letter',
+                valid: '✓ Valid PAN format'
+            },
+            hi: {
+                length: 'पैन 10 अक्षरों का होना चाहिए',
+                firstThree: 'पहले तीन अक्षर अंग्रेजी वर्णमाला होने चाहिए',
+                fourth: 'चौथा अक्षर P, C, H, A, B, G, J, L, F, या T होना चाहिए',
+                fifth: 'पांचवा अक्षर एक अंग्रेजी वर्णमाला होना चाहिए',
+                numbers: '6-9 अक्षर संख्याएं होनी चाहिए',
+                last: 'अंतिम अक्षर एक अंग्रेजी वर्णमाला होना चाहिए',
+                valid: '✓ मान्य पैन प्रारूप'
+            },
+            te: {
+                length: 'PAN ఖచ్చితంగా 10 అక్షరాలు ఉండాలి',
+                firstThree: 'మొదటి మూడు అక్షరాలు ఆంగ్ల అక్షరాలు ఉండాలి',
+                fourth: 'నాల్గవ అక్షరం P, C, H, A, B, G, J, L, F, లేదా T అయి ఉండాలి',
+                fifth: 'ఐదవ అక్షరం ఒక ఆంగ్ల అక్షరం అయి ఉండాలి',
+                numbers: '6-9 అక్షరాలు సంఖ్యలు అయి ఉండాలి',
+                last: 'చివరి అక్షరం ఒక ఆంగ్ల అక్షరం అయి ఉండాలి',
+                valid: '✓ చెల్లుబాటు అయ్యే PAN ఫార్మాట్'
+            }
+        };
+
+        // Update PAN validation messages based on selected language
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const language = this.value;
+            const errorDiv = document.getElementById('panError');
+            const pan = document.getElementById('panNumber').value;
+            
+            if (pan.length > 0) {
+                // Re-trigger validation with new language
+                document.getElementById('panNumber').dispatchEvent(new Event('input'));
+            }
+        });
+
+        // Add address formatting functionality
+        document.getElementById('address').addEventListener('focus', function() {
+            if (!this.value) {
+                const language = document.getElementById('languageSelect').value;
+                this.value = this.getAttribute(`data-${language}-placeholder`);
+            }
+        });
+
+        document.getElementById('address').addEventListener('blur', function() {
+            const language = document.getElementById('languageSelect').value;
+            if (this.value === this.getAttribute(`data-${language}-placeholder`)) {
+                this.value = '';
+            }
+        });
+
+        // Update address placeholder when language changes
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const language = this.value;
+            const addressField = document.getElementById('address');
+            const placeholder = addressField.getAttribute(`data-${language}-placeholder`);
+            
+            if (!addressField.value || addressField.value === addressField.getAttribute(`data-${addressField.dataset.currentLang}-placeholder`)) {
+                addressField.value = '';
+                addressField.placeholder = placeholder;
+            }
+            addressField.dataset.currentLang = language;
+        });
+
+        // Update floating voice status based on selected language
+        function updateFloatingVoiceStatus() {
+            const status = document.getElementById('floatingVoiceStatus');
+            const selectedLang = document.getElementById('languageSelect').value;
+            status.textContent = status.getAttribute(`data-${selectedLang}`);
+        }
+
+        // Initialize voice button status
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceBtn = document.getElementById('floatingVoiceBtn');
+            const voiceStatus = document.getElementById('floatingVoiceStatus');
+            
+            // Show status when hovering over button
+            voiceBtn.addEventListener('mouseenter', function() {
+                voiceStatus.classList.add('active');
+            });
+            
+            voiceBtn.addEventListener('mouseleave', function() {
+                if (!isRecording) {
+                    voiceStatus.classList.remove('active');
+                }
+            });
+
+            // Update status on language change
+            document.getElementById('languageSelect').addEventListener('change', updateFloatingVoiceStatus);
+        });
+
+        // Update recording UI
+        function updateRecordingUI(isRecording) {
+            const voiceBtn = document.getElementById('floatingVoiceBtn');
+            const voiceStatus = document.getElementById('voiceStatus');
+            const selectedLang = document.getElementById('languageSelect').value;
+
+            if (isRecording) {
+                voiceBtn.classList.add('recording');
+                voiceStatus.classList.add('active');
+                voiceStatus.textContent = voiceStatus.getAttribute(`data-${selectedLang}`);
+            } else {
+                voiceBtn.classList.remove('recording');
+                voiceStatus.classList.remove('active');
+            }
+        }
+
+        // Initialize voice button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceBtn = document.getElementById('floatingVoiceBtn');
+            const voiceStatus = document.getElementById('voiceStatus');
+            
+            // Update voice status on language change
+            document.getElementById('languageSelect').addEventListener('change', function() {
+                const selectedLang = this.value;
+                if (voiceStatus.classList.contains('active')) {
+                    voiceStatus.textContent = voiceStatus.getAttribute(`data-${selectedLang}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

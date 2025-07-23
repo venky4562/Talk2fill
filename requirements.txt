@@ -1,0 +1,8 @@
+flask==2.0.1
+SpeechRecognition==3.8.1
+googletrans==3.1.0a0
+SQLAlchemy==1.4.49
+flask-cors==3.0.10 
+gunicorn
+werkzeug==2.0.3
+flask_sqlalchemy
